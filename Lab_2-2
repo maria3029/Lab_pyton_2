@@ -1,0 +1,34 @@
+#  Цілі числа вводяться через пропуск у один рядок. Трансформуйте цей рядок чисел у двовимірний список. Забезпечте коректність введення даних. Перевірте, чи даний двовимірний список цілих чисел має вертикальну вісь симетрії.
+
+import math
+
+try:
+    nums = list(map(int, input("Введіть числа: ").split()))
+except ValueError:
+    print("Помилка: введіть тільки цілі числа")
+    exit()
+
+if len(nums) == 0:
+    print("Помилка: порожній список")
+    exit()
+
+n = len(nums)
+cols = math.ceil(math.sqrt(n))
+matrix = []
+
+for i in range(0, n, cols):
+    matrix.append(nums[i:i + cols])
+
+symmetric = True
+for row in matrix:
+    if row != row[::-1]:
+        symmetric = False
+        break
+
+print("Матриця:")
+for row in matrix:
+    print(row)
+
+print("Матриця%s є вертикально симетричною" %(" НЕ" if not symmetric else ""))
+
+
