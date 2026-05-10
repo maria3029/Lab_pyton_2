@@ -1,0 +1,15 @@
+# Формується список з n дійсних випадкових чисел. Вивести ті числа, які після впорядкування за зростанням збільшили свій номер.
+
+import random
+print("Введіть кількість чисел")
+n = int(input())
+data = list()
+
+for _ in range(n):
+    data.append(random.random() * 100)
+
+print("Згенеровані числа:", [f"{x:.0f}" for x in data])
+
+sorted_data = sorted(data)
+result = [x for x in sorted_data if x > data[sorted_data.index(x)]]
+print("Числа, які після впорядкування збільшили свій номер:", [f"{x:.0f}" for x in result]) 
